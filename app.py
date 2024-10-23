@@ -18,10 +18,8 @@ rows = soup.find("tbody").find_all("tr")
 
 for current_row in range(len(rows) - 1):
     print(f"Currently scraping row {current_row}")
-    
     row = rows[current_row]
     player_obj = {}
-    
     player_obj["Player"] = row.find("td", attrs={"data-stat": "name_display"}).text
     player_obj["Age"] = row.find("td", attrs={"data-stat": "age"}).text
     player_obj["Team"] = row.find("td", attrs={"data-stat": "team_name_abbr"}).text
@@ -32,7 +30,6 @@ for current_row in range(len(rows) - 1):
     player_obj["PTS"] = row.find("td", attrs={"data-stat": "points"}).text
     player_obj["+/-"] = row.find("td", attrs={"data-stat": "plus_minus"}).text
     player_obj["PIM"] = row.find("td", attrs={"data-stat": "pen_min"}).text
-    
     data.append(player_obj)
 
 df = pd.DataFrame(columns=columns, data=data)
